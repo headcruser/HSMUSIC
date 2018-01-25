@@ -4,11 +4,14 @@ var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
 var jwt = require('../services/jwt');
 
+// Test Method
 function pruebas(req,res){
     res.status(200).send({
         message:'Action Controller user'
     });
 }
+
+// Register User
 function saveUser(req,res)
 {
     var user = new User();
@@ -45,6 +48,7 @@ function saveUser(req,res)
     });
 }
 
+// Autentication User
 function userLogin(req,res)
 {
     var params = req.body;
@@ -69,8 +73,24 @@ function userLogin(req,res)
         });
     });
 }
+
+// Update User
+function updateUser(req,res){
+    var userID = req.params.id;
+    var update = req.body;
+
+    User.findByIdAndUpdate(userID,update,(err,userUpdated)=>{
+        if(err)
+            return res.status(500).send({ message:'Error al actualizar el usuario'});
+        if(!userUpdated)
+            return res.status(404).send({ message: 'El usuario no ha podido logearse'});
+
+        res.status(200).send({ user: userUpdated });
+    });
+}
 module.exports={
     pruebas,
     saveUser,
-    userLogin
+    userLogin,
+    updateUser
 };

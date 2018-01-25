@@ -11,5 +11,6 @@ var api = express.Router();
 api.get('/userController',md_auth.ensureAuth,userController.pruebas);
 api.post('/register', userController.saveUser);
 api.post('/login', userController.userLogin);
+api.put('/updateUser/:id', md_auth.ensureAuth,userController.updateUser);
 
 module.exports = api;
