@@ -1,0 +1,11 @@
+{
+  "name": "hsmusic",
+  "version": "1.0.0",
+  "description": "Proyecto de API Rest con NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Martinez",
+  "license": "MIT"
+}
