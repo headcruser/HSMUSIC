@@ -16,6 +16,7 @@ function saveUser(req,res)
     user.name = params.name;
     user.surname = params.surname;
     user.email = params.email;
+    //user.role = 'ROLE_USER';
     user.role = 'ROLE_ADMIN';
     user.image = 'null';
 
@@ -42,7 +43,31 @@ function saveUser(req,res)
         });
     });
 }
+
+function userLogin(req,res)
+{
+    var params = req.body;
+    var email=params.email;
+    var password = params.password;
+
+    User.findOne({email:email},(err,user)=> {
+        if (err)
+            return res.status(500).send({ message: 'Error peticion' });
+
+        if (!user)
+            return res.status(404).send({ message: 'El usuario no existe'});
+
+        bcrypt.compare(password,user.password,(err,check)=>{
+            if (!check)
+                return res.status(404).send({ message: 'Los datos son incorrectos' });
+
+            if(!params.gethash)
+                return res.status(200).send({user});
+        });
+    });
+}
 module.exports={
     pruebas,
-    saveUser
+    saveUser,
+    userLogin
 };
