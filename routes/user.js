@@ -4,9 +4,11 @@ var express = require('express');
 
 //Import controller
 var userController = require('../controllers/user');
-
+var md_auth = require('../middlewares/authentication');
 var api = express.Router();
-api.get('/userController',userController.pruebas);
+
+//Routers for user
+api.get('/userController',md_auth.ensureAuth,userController.pruebas);
 api.post('/register', userController.saveUser);
 api.post('/login', userController.userLogin);
 
