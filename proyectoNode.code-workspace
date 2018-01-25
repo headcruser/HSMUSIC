@@ -4,5 +4,13 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"npm.autoDetect": "on",
+		"npm.packageManager": "npm",
+		"npm-intellisense.importLinebreak": ";\r\n",
+		"npm-intellisense.importDeclarationType": "const",
+		"npm-intellisense.importES6": true,
+		"npm-intellisense.importQuotes": "'",
+		"npm-intellisense.recursivePackageJsonLookup": true
+	}
 }
