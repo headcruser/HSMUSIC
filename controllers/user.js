@@ -1,5 +1,7 @@
 'use strict'
 
+var fs = require('fs');
+var path = require('path');
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
 var jwt = require('../services/jwt');
@@ -88,9 +90,50 @@ function updateUser(req,res){
         res.status(200).send({ user: userUpdated });
     });
 }
+
+function uploadImage(req,res){
+    var userID= req.params.id;
+    var file_name = 'no subido..';
+
+    if(!req.files)
+        return res.status(200).send({ message: 'No has subido ninguna imagen ...'});
+
+    var file_path = req.files.image.path;
+    var file_split = file_path.split('\\');
+    var file_name = file_split[2];
+
+    var ext_split = file_name.split('\.');
+    var file_ext = ext_split[1];
+
+    if(file_ext =='png' || file_ext =='jpg' || file_ext == 'gif')
+    {
+        User.findByIdAndUpdate(userID, { image: file_name }, (err, userUpdated) => {
+            if (!userUpdated)
+                return res.status(404).send({ message: 'El Usuario no pudo actualizarse' });
+
+            res.status(200).send({ user: userUpdated });
+        });
+    }else{
+        return res.status(200).send({ message: 'La extension no valida...' });
+    }
+}
+
+function getImageFile(req,res){
+    var imageFile = req.params.imageFile;
+    var path_file ='./uploads/users/'+imageFile;
+    fs.exists(path_file,(exists)=>{
+        if(exists){
+            res.sendFile(path.resolve(path_file));
+        }else{
+            res.status(200).send({message:'La imagen no existe'});
+        }
+    });
+}
 module.exports={
     pruebas,
     saveUser,
     userLogin,
-    updateUser
+    updateUser,
+    uploadImage,
+    getImageFile
 };

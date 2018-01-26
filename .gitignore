@@ -25,4 +25,7 @@ $RECYCLE.BIN/
 # NODE MODULES
 node_modules
 
+# USER IMAGES
+uploads
+
 # End of https://www.gitignore.io/api/windows
