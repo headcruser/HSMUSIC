@@ -7,6 +7,7 @@ var app = express();
 
 //Create user routes
 var user_routes = require('./routes/user');
+var artist_routes = require('./routes/artist');
 
 app.use(bodyParse.urlencoded({extended:false}));
 app.use(bodyParse.json()); //Convert object to json
@@ -15,5 +16,6 @@ app.use(bodyParse.json()); //Convert object to json
 
 //Base Routes loader
 app.use('/api', user_routes);
+app.use('/api', artist_routes);
 
 module.exports = app; //Export Modules

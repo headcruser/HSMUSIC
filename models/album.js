@@ -7,8 +7,7 @@ var albumSchema = schema({
     description: String,
     year:Number,
     image: String,
-    artist:{ type:Schema.ObjectID, ref:'Artist' }
-
+    artist: { type: schema.ObjectId, ref: 'Artist'}
 });
 
 module.exports = mongoose.model('Album', albumSchema);
