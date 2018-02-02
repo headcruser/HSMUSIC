@@ -111,7 +111,7 @@ function uploadImage(req,res){
             if (!userUpdated)
                 return res.status(404).send({ message: 'El Usuario no pudo actualizarse' });
 
-            res.status(200).send({ user: userUpdated });
+            res.status(200).send({ image:file_name, user: userUpdated });
         });
     }else{
         return res.status(200).send({ message: 'La extension no valida...' });
