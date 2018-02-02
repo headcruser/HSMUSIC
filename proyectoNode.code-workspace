@@ -11,6 +11,25 @@
 		"npm-intellisense.importDeclarationType": "const",
 		"npm-intellisense.importES6": true,
 		"npm-intellisense.importQuotes": "'",
-		"npm-intellisense.recursivePackageJsonLookup": true
+		"npm-intellisense.recursivePackageJsonLookup": true,
+		//EDITOR CONFIG
+		"editor.fontSize": 14,
+		"editor.lineHeight": 26,
+		"editor.fontFamily": "Consolas, 'Courier New', monospace",
+		"editor.multiCursorModifier": "ctrlCmd",
+		"editor.snippetSuggestions": "top",
+		"editor.formatOnPaste": true,
+		"editor.wordWrap": "on",
+		"editor.smoothScrolling": true,
+		//FILES CONFIG
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/.vscode": true,
+			"**/templates_c": true,
+		}
 	}
 }
