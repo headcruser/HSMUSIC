@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
+import {User} from './models/User';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'HSMUSIC';
+  public title = 'HSMUSIC';
+  public user:User;
+  public identity;
+  public token;
+
+  constructor(){
+    this.user = new User('','','','','','ROLE_USER','');
+
+  }
+
 }
