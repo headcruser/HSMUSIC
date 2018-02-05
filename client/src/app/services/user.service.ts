@@ -12,8 +12,17 @@ export class UserService{
     this.url= GLOBAL.url;
   }
 
-  signup(){
-    return 'Mensaje desde el servicio';
+  signup(userToLogin,getHash=null)
+  {
+    if(getHash!=null){
+      userToLogin.getHash=getHash;
+    }
+    let json = JSON.stringify(userToLogin);
+    let params= json;
+    let headers = new Headers({'Content-Type':'application/json'});
+
+    return this._http.post(this.url+'login',params,{headers:headers})
+            .map(res=>res.json());
   }
 }
 
