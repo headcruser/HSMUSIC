@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
-import { UserEditComponent } from 'app/components/userEdit';
+import { UserEditComponent } from './components/userEdit';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { UserEditComponent } from 'app/components/userEdit';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
