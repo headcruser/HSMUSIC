@@ -32,6 +32,18 @@ export class UserService{
             .map(res=>res.json());
   }
   /**
+   * Register User in Database
+   *
+   */
+  register(userToRegister)
+  {
+    let params = JSON.stringify(userToRegister);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+
+    return this._http.post(this.url + 'register', params, { headers: headers })
+      .map(res => res.json());
+  }
+  /**
    * Get inentified Session User
    * @return Json identity formatter
    */
@@ -58,5 +70,19 @@ export class UserService{
       this.token = null
     }
     return this.token
+  }
+
+  updateUser(userToUpdate)
+  {
+    let params = JSON.stringify(userToUpdate);
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':this.getToken()
+    });
+
+    return this._http.put(
+      this.url + 'updateUser'+userToUpdate._id,
+      params, { headers: headers })
+        .map(res => res.json());
   }
 }
