@@ -7,17 +7,35 @@ import {UserService} from './services/user.service';
   templateUrl: './app.component.html',
   providers:[UserService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit
+{
+  //GLOBALS
   public title = 'HSMUSIC';
   public user:User;
   public identity;
   public token;
   public errorMessage;
 
-  constructor(private _userService:UserService){
+  constructor(private _userService:UserService)
+  {
     this.user = new User('','','','','','ROLE_USER','');
   }
+  /**
+   * Init Componets for Class
+   * @return void
+   */
+  ngOnInit()
+  {
+    this.identity = this._userService.getIdentity()
+    this.token = this._userService.getToken()
+    console.log(this.identity)
+    console.log(this.token)
+  }
 
+  /**
+   * Login Session
+   * @return void
+   */
   public onSubmit()
   {
     console.log(this.user)
@@ -29,8 +47,10 @@ export class AppComponent implements OnInit{
 
         if(!this.identity._id){
           alert('El usuario no esta correctamente identificado');
-        }else{
-          // create sesion user
+        }else
+        {
+          // CREATE LOCAL STORAGE
+          localStorage.setItem('identity',JSON.stringify(identity))
           // GET TOKEN FOR SEND HTTP PETITION
           this._userService.signup(this.user, 'true').subscribe(
             response => {
@@ -41,6 +61,7 @@ export class AppComponent implements OnInit{
                 alert('El token no se ha generado');
               } else {
                 // create sesion user for token
+                localStorage.setItem('token',getToken)
               }
             },
             error => {
@@ -64,9 +85,14 @@ export class AppComponent implements OnInit{
         }
       }
     );
-
   }
-  ngOnInit(){
 
+  public logout()
+  {
+    localStorage.removeItem('identity')
+    localStorage.removeItem('token')
+    localStorage.clear()
+    this.identity = null
+    this.token = null
   }
 }

@@ -1,7 +1,14 @@
+<!-- Login User Sesion -->
 <div *ngIf="identity" class="navigation col-lg-1">
   <h1>
     {{title}}
   </h1>
+  <span>
+    {{identity.name}} {{identity.surname}}
+  </span>
+  <span class="btn btn-warning" (click)="logout()">
+    Cerrar Sesión
+  </span>
 </div>
 <div class="clearfix"></div>
 
