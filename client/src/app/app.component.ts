@@ -59,8 +59,9 @@ export class AppComponent implements OnInit
             if (this.token <=0 ) {
               return alert('El Token no se ha generado')
             }
-
+            //CREATE TOKEN IN LOCALSTORAGE
             localStorage.setItem('token', token)
+            this.user = new User('', '', '', '', '', 'ROLE_USER', '')
           },
           error =>
           {
@@ -68,7 +69,6 @@ export class AppComponent implements OnInit
             if (ErrorMessage != null) {
               var body = JSON.parse(error._body)
               this.errorMessage = body.message
-              console.log(error)
             }
           })
 
@@ -96,7 +96,10 @@ export class AppComponent implements OnInit
     this.identity = null
     this.token = null
   }
-
+  /**
+   * Register User
+   * @return void
+  */
   public onSubmitRegister()
   {
     console.log(this.userRegister)
