@@ -1,28 +1,29 @@
 import {Injectable} from '@angular/core'
-import {Http,Response,Headers} from '@angular/http';
-import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
-import {GLOBAL} from './global';
+import {Http,Response,Headers} from '@angular/http'
+import 'rxjs/add/operator/map'
+import {Observable} from 'rxjs/Observable'
+import {GLOBAL} from './global'
 
 @Injectable()
-export class UserService{
-  public url:string;
-  public identity;
-  public token;
+export class UserService
+{
+  public url:string
+  public identity
+  public token
 
   constructor(private _http:Http){
-    this.url= GLOBAL.url;
+    this.url= GLOBAL.url
   }
   /**
    * Login User application
    * @param userToLogin Object User
-   * @param getHash Generate Token for User
+   * @param gethash Generate Token for User
    * @return Json data Login Sesion user
    */
-  signup(userToLogin,getHash=null)
+  signup(userToLogin,gethash=null)
   {
-    if(getHash!=null){
-      userToLogin.getHash=getHash;
+    if(gethash!=null){
+      userToLogin.gethash=gethash;
     }
     let json = JSON.stringify(userToLogin);
     let params= json;

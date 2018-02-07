@@ -1,27 +1,26 @@
-import { Component ,OnInit} from '@angular/core'
-import {User} from './models/User'
+import { Component, OnInit } from '@angular/core'
 import {UserService} from './services/user.service'
+import { User } from 'app/models/User'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers:[UserService]
+  providers: [UserService]
 })
 export class AppComponent implements OnInit
 {
   //GLOBALS
   public title = 'HSMUSIC'
-  public user:User
+  public user: User
   public userRegister: User
   public identity
   public token
   public errorMessage
   public alertRegister: string
 
-  constructor(private _userService:UserService)
-  {
-    this.user = new User('','','','','','ROLE_USER','')
-    this.userRegister = new User('','','','','','ROLE_USER','')
+  constructor(private _userService: UserService) {
+    this.user = new User('', '', '', '', '', 'ROLE_USER', '')
+    this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '')
   }
   /**
    * Init Componets for Class
@@ -33,60 +32,62 @@ export class AppComponent implements OnInit
     this.token = this._userService.getToken()
   }
   /**
-   * Login Session
-   * @return void
-   */
+ * Login Session
+ * @return void
+ */
   public onSubmit()
   {
-    // GET USER IDENTIFIED
+    // GET DATA USER IDENTIFIED
     this._userService.signup(this.user).subscribe(
-      response=>{
+      response =>
+      {
         let identity = response.user
         this.identity = identity
 
-        if(!this.identity._id){
-          alert('El usuario no esta correctamente identificado')
-        }else
-        {
-          // CREATE LOCAL STORAGE
-          localStorage.setItem('identity',JSON.stringify(identity))
-          // GET TOKEN FOR SEND HTTP PETITION
-          this._userService.signup(this.user, 'true').subscribe(
-            response => {
-              let getToken = response.token
-              this.token = getToken
-
-              if (this.token.length <= 0) {
-                alert('El token no se ha generado')
-              } else {
-                // create sesion user for token
-                localStorage.setItem('token',getToken)
-                this.user = new User('', '', '', '', '', 'ROLE_USER', '')
-              }
-            },
-            error => {
-              var ErrorMessage = <any>error
-              if (ErrorMessage != null) {
-                var body = JSON.parse(error._body)
-                this.errorMessage = body.message
-                console.log(error)
-              }
-            }
-          )
+        if (!this.identity._id) {
+          return alert('El usuario no esta correctamente identificado')
         }
+        //CREATE ELEMENT LOCALSTORTAGE
+        localStorage.setItem('identity', JSON.stringify(identity))
+        // BUILD TOKEN
+        this._userService.signup(this.user,'true').subscribe(
+          response =>
+          {
+            let token = response.token
+            this.token = token
+
+            if (this.token <=0 ) {
+              return alert('El Token no se ha generado')
+            }
+
+            localStorage.setItem('token', token)
+          },
+          error =>
+          {
+            var ErrorMessage = <any>error
+            if (ErrorMessage != null) {
+              var body = JSON.parse(error._body)
+              this.errorMessage = body.message
+              console.log(error)
+            }
+          })
+
       },
-      error=>{
+      error =>
+      {
         var ErrorMessage = <any>error
-        if(ErrorMessage!=null)
+        if (ErrorMessage != null)
         {
           var body = JSON.parse(error._body)
           this.errorMessage = body.message
           console.log(error)
         }
-      }
-    )
+      })
   }
-
+  /**
+   * Close session
+   * @return void
+  */
   public logout()
   {
     localStorage.removeItem('identity')
@@ -98,29 +99,27 @@ export class AppComponent implements OnInit
 
   public onSubmitRegister()
   {
-      console.log(this.userRegister)
+    console.log(this.userRegister)
+    this._userService.register(this.userRegister).subscribe(
+      response => {
+        let user = response.user
+        this.userRegister = user
 
-      this._userService.register(this.userRegister).subscribe(
-        response=>{
-          let user = response.user
-          this.userRegister=user
-
-          if(!user._id){
-            this.alertRegister = 'Error al registrarse'
-          }else{
-            this.alertRegister = 'El registro se ha realizado correctamente, Registrate con: '+this.userRegister.email
-            this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '')
-          }
-        },
-        error=>{
-          var ErrorMessage = <any>error
-          if (ErrorMessage != null)
-          {
-            var body = JSON.parse(error._body)
-            this.alertRegister = body.message
-            console.log(error)
-          }
+        if (!user._id) {
+          this.alertRegister = 'Error al registrarse'
+        } else {
+          this.alertRegister = 'El registro se ha realizado correctamente, Registrate con: ' + this.userRegister.email
+          this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '')
         }
-      )
+      },
+      error => {
+        var ErrorMessage = <any>error
+        if (ErrorMessage != null) {
+          var body = JSON.parse(error._body)
+          this.alertRegister = body.message
+          console.log(error)
+        }
+      }
+    )
   }
 }
