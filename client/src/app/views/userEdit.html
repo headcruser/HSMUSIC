@@ -1,5 +1,30 @@
-<div class="col-lg-6" ng-if="identity">
-  <h1>{{titulo}}</h1>
-  <!-- formulario -->
+<div class="col-md-6" >
+  <h1>{{titulo}}
+  </h1>
+  <form #updateUserForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-10">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" #name="ngModel" [(ngModel)]="user.name" name="nombre" class="form-control" required>
+      <span *ngIf="!name.valid && name.touched">
+        El nombre es obligatorio
+      </span>
+    </div>
 
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" #surname="ngModel" [(ngModel)]="user.surname" name="surname" class="form-control" required>
+      <span *ngIf="!surname.valid && surname.touched">
+        Los apellidos son obligatorios
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="emailRegister">Email address</label>
+      <input type="email" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required>
+      <span *ngIf="!email.valid && email.touched">
+        El email es obligatorio
+      </span>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar  </button>
+  </form>
 </div>
