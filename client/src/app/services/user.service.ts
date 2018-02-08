@@ -50,27 +50,15 @@ export class UserService
    */
   getIdentity()
   {
-    let identity = JSON.parse(localStorage.getItem('identity'))
-    if(identity != "undefined"){
-      this.identity=identity
-    }else{
-      this.identity = null
-    }
-    return this.identity
+    return JSON.parse(localStorage.getItem('identity'))
   }
   /**
    * Get inentified Session User
    * @return Json token formatted
    */
-  getToken()
-  {
+  getToken():string{
     let token = JSON.parse(localStorage.getItem('token'))
-    if (token != "undefined") {
-      this.token = token
-    } else {
-      this.token = null
-    }
-    return this.token
+    return token
   }
 
   updateUser(userToUpdate)
@@ -78,7 +66,7 @@ export class UserService
     let params = JSON.stringify(userToUpdate);
     let headers = new Headers({
       'Content-Type': 'application/json',
-      'Authorization':this.getToken()
+      'Authorization': localStorage.getItem('token')
     });
 
     return this._http.put(

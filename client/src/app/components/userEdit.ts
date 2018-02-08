@@ -1,7 +1,7 @@
 import {Component,OnInit} from '@angular/core'
-
 import { UserService } from '../services/user.service'
 import { User } from '../models/User'
+import { GLOBAL} from '../services/global'
 
 @Component({
   selector:'userEdit',
@@ -16,13 +16,15 @@ export class UserEditComponent implements OnInit
   public identity
   public token
   public alertMessage
+  public url:string
 
   constructor(private _userService:UserService)
   {
     this.titulo='Actualizar Datos'
-    this.identity = this._userService.getIdentity()
-    this.token = this._userService.getToken()
+    this.identity = JSON.parse(localStorage.getItem('identity'))
+    this.token = localStorage.getItem('token')
     this.user= this.identity
+    this.url = GLOBAL.url
   }
 
   ngOnInit()
@@ -38,10 +40,26 @@ export class UserEditComponent implements OnInit
           if(!response.user){
             return this.alertMessage='El usuario no se ha actualizado'
           }
-          //this.user=response.user
-          localStorage.setItem('identity',JSON.stringify(this.user))
 
-          return this.alertMessage = 'Datos Actualizacos correctamente'
+          //this.user=response.user
+          localStorage.setItem('identity', JSON.stringify(this.user))
+          document.getElementById('indentity_name').innerHTML=this.user.name
+
+          if(!this.filesToUpload){
+            //Redirect
+          }else{
+            this.makeFileRequest(this.url +'uploadImageUser/'+this.user._id,[],this.filesToUpload)
+                .then(
+                  (result:any)=>{
+                    this.user.image=result.image
+                    localStorage.setItem('identity', JSON.stringify(this.user))
+                    let imagePath=this.url+'getImageUser/'+this.user.image
+                    document.getElementById('imageLogged').setAttribute('src',imagePath)
+                  }
+                )
+
+          }
+          return this.alertMessage = 'Datos Actualizados correctamente'
       },
       error=>
       {
@@ -53,5 +71,37 @@ export class UserEditComponent implements OnInit
         }
       }
     )
+  }
+  public filesToUpload: Array<File>
+
+  fileChangedEvent(fileInput:any){
+    this.filesToUpload = <Array<File>>fileInput.target.files
+  }
+
+  makeFileRequest(url:string,params:Array<string>,files:Array<File>)
+  {
+    var token = this.token
+
+    return new Promise((resolve,reject)=>{
+      var formData:any = new FormData()
+      var xhr = new XMLHttpRequest()
+      for(var i = 0 ; i< files.length; i++){
+        formData.append('image',files[i],files[i].name)
+      }
+      xhr.onreadystatechange=()=>{
+        if(xhr.readyState==4)
+        {
+            if(xhr.status==200){
+              resolve(JSON.parse(xhr.response))
+            }else{
+              reject(xhr.response)
+            }
+        }
+      }
+      xhr.open('POST',url,true)
+      xhr.setRequestHeader('Authorization',token)
+      xhr.send(formData)
+    })
+
   }
 }

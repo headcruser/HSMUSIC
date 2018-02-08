@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import {UserService} from './services/user.service'
 import { User } from 'app/models/User'
+import { GLOBAL } from './services/global'
 
 @Component({
   selector: 'app-root',
@@ -17,24 +18,20 @@ export class AppComponent implements OnInit
   public token
   public errorMessage
   public alertRegister: string
+  public url: string
 
   constructor(private _userService: UserService) {
     this.user = new User('', '', '', '', '', 'ROLE_USER', '')
     this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '')
+    this.url = GLOBAL.url
   }
-  /**
-   * Init Componets for Class
-   * @return void
-   */
+
   ngOnInit()
   {
     this.identity = JSON.parse(localStorage.getItem('identity'))
     this.token = localStorage.getItem('token')
   }
-  /**
- * Login Session
- * @return void
- */
+
   public onSubmit()
   {
     // GET DATA USER IDENTIFIED
