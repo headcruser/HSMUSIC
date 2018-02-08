@@ -28,8 +28,8 @@ export class AppComponent implements OnInit
    */
   ngOnInit()
   {
-    this.identity = this._userService.getIdentity()
-    this.token = this._userService.getToken()
+    this.identity = JSON.parse(localStorage.getItem('identity'))
+    this.token = localStorage.getItem('token')
   }
   /**
  * Login Session
@@ -39,8 +39,7 @@ export class AppComponent implements OnInit
   {
     // GET DATA USER IDENTIFIED
     this._userService.signup(this.user).subscribe(
-      response =>
-      {
+      response => {
         let identity = response.user
         this.identity = identity
 
@@ -50,21 +49,19 @@ export class AppComponent implements OnInit
         //CREATE ELEMENT LOCALSTORTAGE
         localStorage.setItem('identity', JSON.stringify(identity))
         // BUILD TOKEN
-        this._userService.signup(this.user,'true').subscribe(
-          response =>
-          {
+        this._userService.signup(this.user, 'true').subscribe(
+          response => {
             let token = response.token
             this.token = token
 
-            if (this.token <=0 ) {
+            if (this.token <= 0) {
               return alert('El Token no se ha generado')
             }
             //CREATE TOKEN IN LOCALSTORAGE
             localStorage.setItem('token', token)
             this.user = new User('', '', '', '', '', 'ROLE_USER', '')
           },
-          error =>
-          {
+          error => {
             var ErrorMessage = <any>error
             if (ErrorMessage != null) {
               var body = JSON.parse(error._body)
@@ -73,14 +70,11 @@ export class AppComponent implements OnInit
           })
 
       },
-      error =>
-      {
+      error => {
         var ErrorMessage = <any>error
-        if (ErrorMessage != null)
-        {
+        if (ErrorMessage != null) {
           var body = JSON.parse(error._body)
           this.errorMessage = body.message
-          console.log(error)
         }
       })
   }

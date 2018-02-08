@@ -82,7 +82,7 @@ export class UserService
     });
 
     return this._http.put(
-      this.url + 'updateUser'+userToUpdate._id,
+      this.url + 'updateUser/'+userToUpdate._id,
       params, { headers: headers })
         .map(res => res.json());
   }

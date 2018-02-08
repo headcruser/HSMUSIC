@@ -71,7 +71,7 @@ function userLogin(req,res)
             if(!params.gethash)
                 return res.status(200).send({user});
 
-            res.status(404).send({ token: jwt.createToken(user) });
+            res.status(200).send({ token: jwt.createToken(user) });
         });
     });
 }
