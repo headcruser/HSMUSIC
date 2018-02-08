@@ -57,7 +57,7 @@ export class UserService
    * @return Json token formatted
    */
   getToken():string{
-    let token = JSON.parse(localStorage.getItem('token'))
+    let token = localStorage.getItem('token')
     return token
   }
 

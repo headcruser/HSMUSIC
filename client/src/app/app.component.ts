@@ -28,8 +28,8 @@ export class AppComponent implements OnInit
 
   ngOnInit()
   {
-    this.identity = JSON.parse(localStorage.getItem('identity'))
-    this.token = localStorage.getItem('token')
+    this.identity = this._userService.getIdentity()
+    this.token = this._userService.getToken()
   }
 
   public onSubmit()
