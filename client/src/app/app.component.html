@@ -1,7 +1,10 @@
-<!-- Login User Sesion -->
+<!-- NAVIGATION SITE -->
 <div *ngIf="identity" class="navigation col-lg-1">
-  <h1>
-    {{title}}
+  <h1 class="headTitle">
+    <a [routerLink]="['/']">
+      <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+      {{title}}
+    </a>
   </h1>
 
   <nav id="navigation">
@@ -17,31 +20,27 @@
   </nav>
 
   <nav id="userLogged">
-
     <div class="imageForEdit">
-      <img  id="imageLogged" src="{{url + 'getImageUser/' + identity.image}}" class="img-thumbnail" alt="Imagen del usuario">
+      <img  class="img-responsive"  id="imageLogged" src="{{url + 'getImageUser/' + identity.image}}"     alt="Imagen del usuario">
     </div>
-
     <span id="indentity_name">
       {{identity.name}}
-    </span>
-    <span class="btn btn-warning" (click)="logout()">
-      Cerrar Sesión
     </span>
     <a [routerLink]="['/misDatos']">
       <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> MisDatos
     </a>
+    <a (click)="logout()" class="btnLogout">
+      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Salir
+    </a>
   </nav>
-</div>
-<div class="clearfix"></div>
+</div><!-- END NAVBAR -->
 
-<div *ngIf="identity" class="central col-lg-11">
-  <p>Logeado en la aplicacion</p>
+<div *ngIf="identity" class="central col-lg-11 page-content-wrapper">
   <!-- Adding User Edit Component  -->
   <router-outlet></router-outlet>
 </div>
 
-<div class="col-lg-12" *ngIf="!identity">
+<div class="col-lg-11" *ngIf="!identity">
   <div class="row">
     <!-- Formulario Login -->
     <div class="col-md-6">
