@@ -1,20 +1,24 @@
 .navigation
   text-align: center
-  color: $FONTS_NAVBAR
+  color: $BACKGROUND
   background: $COLOR_NAVBAR
   height: 100%
   position: absolute
   position: fixed
   z-index: 1000
   a
-    color: #ddd
+    color: $BACKGROUND
     margin-top: 20px
     margin-bottom: 20px
     display: block
     text-decoration: none
     &:hover
-      color: white
+      color: $HOVER_BUTTON
   .glyphicon
     font-size: 25px
     display: block
     width: 100%
+
+.actived
+  border-bottom: 4px solid $ACTIVED_BUTTON
+  padding-bottom: 4px
