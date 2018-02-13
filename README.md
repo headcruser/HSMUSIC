@@ -1,22 +1,27 @@
 # API REST CON NODE JS
 
 ## DESCRIPCION
-El objetivo de esta aplicación, es desarrollar una
-aplicacion similar a spotify, implementando tecnologias como:
-
+Web application, similar to spotify using
 * ANGULAR
+* TYPESCRIPT
 * NODEJS
-* JQUERY
+* MONGO DB
 * JAVASCRIPT
+* BOOSTRAP
+* SASS
 
-La finalidad de realizar esta aplicacion, es la introduccion al desarrollo web.
+## SITE
+<p align="center">
+<img src="DOC/img/HSMUSIC.JPG" title="Welcome User." >
+<div align="center"> Site Home user.</div>
+</p>
 
-## ACERCA DE
+## About me
 ***
-  **AUTOR:** Daniel Martinez Sierra
+  **Author:** Daniel Martinez Sierra
 
-  **EMAIL:** headcruser@gmail.com
+  **Email:** headcruser@gmail.com
 
-  **GITHUB:** www.github.com/headcruser
+  **gitHub:** www.github.com/headcruser
 
-  **LINKEDIN:** Daniel Martinez
+  **linkedin:** Daniel Martinez
