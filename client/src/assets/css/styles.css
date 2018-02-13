@@ -54,16 +54,17 @@ html {
 
 #userLogged {
   border-top: 3px solid #757571;
-  margin-top: 75px; }
+  margin-top: 40px; }
   #userLogged .imageForEdit {
-    height: 40px;
-    height: 40px;
     margin: 0px auto;
     margin-top: 15px;
+    margin-bottom: 10px;
     overflow: hidden;
     text-align: center; }
     #userLogged .imageForEdit img {
-      width: 100%; }
+      border-radius: 50%;
+      width: 60px;
+      height: 55px; }
 
 .btnLogout {
   cursor: pointer; }

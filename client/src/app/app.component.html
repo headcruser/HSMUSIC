@@ -1,9 +1,10 @@
 <!-- NAVIGATION SITE -->
 <div *ngIf="identity" class="navigation col-lg-1 navbar-transparent modal-content">
   <nav>
+    <!-- SECTION NAVIGATION -->
     <div id="navigation">
         <h1 class="headTitle">
-          <a [routerLink]="['']">
+          <a [routerLink]="['/']">
             <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
             {{title}}
           </a>
@@ -20,12 +21,12 @@
           <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Albums
         </a>
     </div>
-
+    <!-- SECTION INFO USER -->
     <div id="userLogged">
       <div class="row">
         <div class="col-md-12">
           <div class="imageForEdit">
-            <img class="img-responsive img-circle" id="imageLogged" src="{{url + 'getImageUser/' + identity.image}}" alt="Imagen del usuario">
+            <img id="imageLogged" src="{{url + 'getImageUser/' + identity.image}}" alt="Imagen del usuario" >
           </div>
         </div>
       </div>
@@ -67,12 +68,18 @@
         <!-- SECTION LOGIN -->
         <div class="col-md-6 login">
           <!-- ALERT SECTION-->
-          <div *ngIf="errorMessage "class="alert alert-danger" role="alert">
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            <div class="alert-icon">
+              <i class="now-ui-icons travel_info"></i>
+            </div>
             <strong>Error</strong> {{errorMessage}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
             </button>
           </div>
+          <!-- login -->
           <div class="container">
             <div class="row">
               <div class="col-md-4 content-center">
@@ -110,10 +117,15 @@
         <!-- SECTION REGISTER -->
         <div class="col-md-6 register">
           <!-- ALERT INFO -->
-          <div *ngIf="alertRegister" class="alert alert-info" role="alert">
-              {{alertRegister}}
+          <div *ngIf="alertRegister" class="alert alert-danger" role="alert">
+            <div class="alert-icon">
+              <i class="now-ui-icons travel_info"></i>
+            </div>
+            <strong>Error</strong> {{alertRegister}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
             </button>
           </div>
           <!-- FORM REGISTER -->

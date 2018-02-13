@@ -1,7 +1,6 @@
-<div class="head-page" *ngIf="identity">
-  <h1>{{titulo}}</h1>
-  <a [routerLink]="['/createArtist']" *ngIf="identity && identity.role == 'ROLE_ADMIN'"
-      href="" class="btn btn-primary">
+<div class="jumbotron text-center modal-content" *ngIf="identity">
+  <h1 class="text-center">{{titulo}}</h1>
+  <a [routerLink]="['/createArtist']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" href="" class="btn btn-primary btn-round ">
     <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
     Añadir </a>
 </div>
