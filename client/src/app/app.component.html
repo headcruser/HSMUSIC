@@ -1,5 +1,5 @@
 <!-- NAVIGATION SITE -->
-<div *ngIf="identity" class="navigation col-lg-1 navbar-transparent">
+<div *ngIf="identity" class="navigation col-lg-1 navbar-transparent modal-content">
   <nav>
     <div id="navigation">
         <h1 class="headTitle">
@@ -60,7 +60,7 @@
   <!-- Adding User Edit Component  -->
   <router-outlet></router-outlet>
 </div>
-
+<!-- REGISTER AND LOGIN -->
 <div class="container">
   <div class="col-lg-12" *ngIf="!identity">
       <div class="row">

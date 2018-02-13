@@ -4,16 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders } from './app.routing'
 
+import { HomeComponent } from "./components/home.component";
 import { AppComponent } from './app.component';
 import { UserEditComponent } from './components/userEdit';
 import { ArtistListComponent } from './components/artistList.component';
+import { ArtistAddComponent } from './components/artistAdd.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     UserEditComponent,
-    ArtistListComponent
+    ArtistListComponent,
+    ArtistAddComponent
+
   ],
   imports: [
     BrowserModule,

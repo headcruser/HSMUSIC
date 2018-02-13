@@ -1,0 +1,47 @@
+<h1>{{titulo}}</h1>
+
+
+<form >
+  <div class="input-group form-group-no-border form-group">
+    <span class="input-group-addon"></span>
+    <input type="text" #name="ngModel" [(ngModel)]="artist.name" name="name" class="form-control  input-lg" placeholder="Nombre Artista"
+      required>
+  </div>
+  <span *ngIf="!name.valid && name.touched">
+    <p class="text-danger">El nombre es obligatorio</p>
+  </span>
+
+  <div class="input-group form-group-no-border form-group">
+    <span class="input-group-addon"></span>
+    <textarea #description="ngModel" [(ngModel)]="artist.description" name="description" class="form-control" placeholder="Descripcion"
+      required></textarea>
+    </div>
+    <span *ngIf="!description.valid && description.touched">
+      <p class="text-danger">La descripcion es Obligatoria</p>
+    </span>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<!-- <form >
+  <legend>Form title</legend>
+  <div class="input-group form-group-no-border form-group">
+    <span class="input-group-addon"></span>
+    <input type="text" #name="ngModel" [(ngModel)]="artist.name" name="name" class="form-control  input-lg" placeholder="Nombre Artista"
+      required>
+  </div>
+  <span *ngIf="!name.valid && name.touched">
+    <p class="text-danger">El nombre es obligatorio</p>
+  </span>
+
+  <div class="input-group form-group-no-border form-group">
+    <span class="input-group-addon"></span>
+    <textarea #description="ngModel" [(ngModel)]="artist.description" name="description" class="form-control  input-lg" placeholder="Descripcion"
+      required ></textarea>
+  <span *ngIf="!description.valid && description.touched">
+    <p class="text-danger">La descripcion es Obligatoria</p>
+  </span>
+
+
+</form> -->
