@@ -20,12 +20,24 @@ html {
   background: #757571;
   color: #F0F0F0; }
 
+.artistImageEdit img {
+  width: 300px;
+  height: 300px; }
+
 .headTitle {
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 25px;
   display: block; }
+
+.titleSection {
+  background: #757571;
+  color: #F0F0F0;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 5px;
+  height: 75px; }
 
 .navigation {
   text-align: center;

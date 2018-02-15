@@ -4,6 +4,7 @@ import {UserEditComponent} from './components/userEdit'
 import { ArtistListComponent } from './components/artistList.component';
 import { HomeComponent } from './components/home.component';
 import { ArtistAddComponent } from './components/artistAdd.component';
+import { ArtistEditComponent } from './components/artistEdit.component';
 
 
 const appRoutes:Routes=[
@@ -15,6 +16,7 @@ const appRoutes:Routes=[
   { path: '', component: HomeComponent },
   { path: 'artists/:page', component: ArtistListComponent },
   { path: 'createArtist', component: ArtistAddComponent },
+  { path: 'editArtist/:id', component: ArtistEditComponent },
   { path: 'misDatos', component: UserEditComponent },
   { path: '**', component: HomeComponent }
 ]

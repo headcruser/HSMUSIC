@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { UserEditComponent } from './components/userEdit';
 import { ArtistListComponent } from './components/artistList.component';
 import { ArtistAddComponent } from './components/artistAdd.component';
+import { ArtistEditComponent } from './components/artistEdit.component';
 
 
 @NgModule({
@@ -17,8 +18,8 @@ import { ArtistAddComponent } from './components/artistAdd.component';
     HomeComponent,
     UserEditComponent,
     ArtistListComponent,
-    ArtistAddComponent
-
+    ArtistAddComponent,
+    ArtistEditComponent
   ],
   imports: [
     BrowserModule,
