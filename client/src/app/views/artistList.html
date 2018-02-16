@@ -1,6 +1,46 @@
-<div class="jumbotron text-center modal-content" *ngIf="identity">
+<div class="jumbotron text-center modal-content">
   <h1 class="text-center">{{titulo}}</h1>
-  <a [routerLink]="['/createArtist']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" href="" class="btn btn-primary btn-round ">
+  <a [routerLink]="['/createArtist']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" href=""
+    class="btn btn-primary btn-round ">
     <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
-    Añadir </a>
+    Añadir Artista
+  </a>
+
+  <div class="pagination-container justify-content-center">
+    <ul class="pagination pagination-primary">
+      <li class="page-item arrow-margin-left">
+        <a class="page-link"  [routerLink]="['/artists',prevPage]" aria-label="Previous">
+          <span aria-hidden="true">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+          </span>
+        </a>
+      </li>
+      <li class="page-item arrow-margin-right">
+        <a class="page-link" [routerLink]="['/artists',nextPage]" aria-label="Next">
+          <span aria-hidden="true">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
+
+<ul class="artistList" *ngIf="identity">
+    <li *ngFor="let artist of artists" class="col-lg-3 artistItem">
+      <div class="artistImage">
+        <img src="{{url + 'getImageArtist/'+artist.image}}" alt="">
+      </div>
+      <div class="artistName">
+        <a href="#">{{artist.name}}</a>
+        <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+
+          <a [routerLink]="['/editArtist',artist._id]"
+              class="btn btn-sm btn-warning">Editar</a>
+          <a href="#"
+              class="btn btn-sm btn-danger">Eliminar</a>
+        </div>
+      </div>
+    </li>
+</ul>
+
