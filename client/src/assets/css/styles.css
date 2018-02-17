@@ -14,30 +14,11 @@ html {
   background: #2d3436;
   position: absolute;
   padding: 15px;
-  padding-left: 125px; }
+  padding-left: 25px; }
 
 .jumbotron {
   background: #757571;
   color: #F0F0F0; }
-
-.artistImageEdit img {
-  width: 300px;
-  height: 300px; }
-
-.headTitle {
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 25px;
-  display: block; }
-
-.titleSection {
-  background: #757571;
-  color: #F0F0F0;
-  font-size: 32px;
-  font-weight: bold;
-  border-radius: 5px;
-  height: 75px; }
 
 .navigation {
   text-align: center;
@@ -47,6 +28,10 @@ html {
   position: absolute;
   position: fixed;
   z-index: 1000; }
+  .navigation .headTitle {
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase; }
   .navigation a {
     color: #B0ABA0;
     margin-top: 20px;
@@ -108,15 +93,50 @@ html {
   .artistItem .artistImage {
     height: 245px;
     width: 100%;
+    background: #757571;
     overflow: hidden; }
     .artistItem .artistImage img {
       height: 100%;
       min-width: 100%; }
   .artistItem .artistName {
     padding: 10px;
-    color: white;
-    background: #222326; }
+    color: #F0F0F0;
+    background: #2f3640;
+    text-align: center; }
     .artistItem .artistName a {
-      color: white; }
+      color: white;
+      font-size: 12px; }
+
+.artistNav {
+  background: #2f3640 !important;
+  color: white !important; }
+  .artistNav a {
+    background: #84BD00 !important; }
+    .artistNav a:hover {
+      background: #97CE68 !important; }
+
+.artistImageEdit img {
+  width: 300px;
+  height: 300px; }
+
+.titleSection {
+  background: #757571;
+  color: #F0F0F0;
+  opacity: 0.9;
+  filter: alpha(opacity=20);
+  text-align: center;
+  padding: 15px;
+  margin: 0px;
+  border-radius: 5px; }
+  .titleSection .titulo {
+    font-size: 36px;
+    font-weight: bold;
+    font: Montserrat; }
+  .titleSection .accion {
+    font-size: 16px;
+    padding: 0px; }
+
+hr {
+  border-top: 3px solid #757571; }
 
 /*# sourceMappingURL=styles.css.map */

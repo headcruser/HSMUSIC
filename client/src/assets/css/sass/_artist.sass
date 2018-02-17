@@ -15,13 +15,49 @@
   .artistImage
     height: 245px
     width: 100%
+    background: $BORDER_TOP
     overflow: hidden
     img
       height: 100%
       min-width: 100%
   .artistName
     padding: 10px
-    color: white
-    background: #222326
+    color: $FONTS_NAVBAR
+    background: #2f3640
+    text-align: center
     a
       color: white
+      font-size: 12px
+
+.artistNav
+  background: #2f3640 !important
+  color: white !important
+  a
+    background: $ACTIVED_BUTTON !important
+    &:hover
+      background: $HOVER_BUTTON !important
+
+.artistImageEdit
+  img
+    width: 300px
+    height: 300px
+
+.titleSection
+  background: $BORDER_TOP
+  color: $FONTS_NAVBAR
+  opacity: 0.9
+  filter: alpha(opacity=20)
+  text-align: center
+  padding: 15px   //Alinea horizontal
+  margin: 0px     // Quita el margen entre elementos
+  border-radius: 5px  //Redondea bloques
+  .titulo
+    font-size: 36px
+    font-weight: bold
+    font: Montserrat
+  .accion
+    font-size: 16px
+    padding: 0px
+
+hr
+  border-top: 3px solid $BORDER_TOP
