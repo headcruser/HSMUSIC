@@ -19,6 +19,7 @@ export class ArtistListComponent implements OnInit
   public url:string
   public nextPage:number
   public prevPage:number
+  public confirmado
 
   constructor(
     private _route:ActivatedRoute,
@@ -73,5 +74,28 @@ export class ArtistListComponent implements OnInit
         }
       )
     })
+  }
+  onDeleteConfirm(id) { this.confirmado = id }
+  onCancelArtist(){ this.confirmado = null }
+
+  onDeleteArtist(id)
+  {
+    this._artistService.deleteArtist(this.token,id).subscribe(
+      response =>
+      {
+        if (!response.artist)
+          return alert('Eror en el sevidor')
+
+        this.getArtists()
+      },
+      error =>
+      {
+        var ErrorMessage = <any>error
+        if (ErrorMessage != null) {
+          var body = JSON.parse(error._body)
+          console.log(error)
+        }
+      }
+    )
   }
 }

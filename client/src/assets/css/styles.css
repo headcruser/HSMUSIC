@@ -15,8 +15,7 @@ html {
   padding: 15px;
   padding-left: 25px;
   min-height: 100%;
-  min-width: 500px;
-  overflow-y: scroll; }
+  min-width: 500px; }
 
 .jumbotron {
   background: #757571;
@@ -150,5 +149,12 @@ hr {
   margin-right: 30px; }
   #artistHeadCard .image img {
     width: 150px; }
+
+.seguro {
+  margin-top: -45px;
+  text-align: center;
+  background: #2f3640;
+  position: absolute;
+  overflow: hidden; }
 
 /*# sourceMappingURL=styles.css.map */

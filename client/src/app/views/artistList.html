@@ -32,21 +32,27 @@
 <hr>
 <ul class="artistList" *ngIf="identity">
     <li *ngFor="let artist of artists" class="col-lg-3 artistItem modal-content">
+      <!-- IMAGE ARTIST -->
       <div class="artistImage">
         <img src="{{url + 'getImageArtist/'+artist.image}}" alt="">
       </div>
+      <!-- ACTIONS -->
       <div class="artistName">
         <a [routerLink]="['/artist',artist._id]">{{artist.name}}</a>
+
         <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
-          <div class="row">
-            <div class="col-md-6">
-              <a [routerLink]="['/editArtist',artist._id]"
-                  class="btn btn-warning btn-block"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-            </div>
-            <div class="col-md-6">
-              <a href="#" class="btn btn-danger btn-block"><i class="fa fa-trash" aria-hidden="true"></i> Borrar</a>
-            </div>
-          </div>
+            <a [routerLink]="['/editArtist',artist._id]"
+                class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+
+            <a (click)="onDeleteConfirm(artist._id)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Borrar</a>
+        </div>
+
+        <div class="seguro" *ngIf="confirmado== artist._id">
+            <a (click)="onDeleteArtist(artist._id)" class="btn btn-danger">
+              <i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+
+            <a (click)="onCancelArtist()" class="btn btn-default ">
+              <i class="fa fa-trash" aria-hidden="true"></i> Cancelar</a>
         </div>
       </div>
     </li>
