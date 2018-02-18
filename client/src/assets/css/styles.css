@@ -1,7 +1,6 @@
 body, html {
   margin: 0px;
-  height: 100%;
-  overflow-x: hidden; }
+  height: 100%; }
 
 body {
   background: #2d3436; }
@@ -14,7 +13,10 @@ html {
   background: #2d3436;
   position: absolute;
   padding: 15px;
-  padding-left: 25px; }
+  padding-left: 25px;
+  min-height: 100%;
+  min-width: 500px;
+  overflow-y: scroll; }
 
 .jumbotron {
   background: #757571;
@@ -138,5 +140,15 @@ html {
 
 hr {
   border-top: 3px solid #757571; }
+
+/**SECTION ARTIST DETAIL STYLES */
+#artistHeadCard .image {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  float: left;
+  margin-right: 30px; }
+  #artistHeadCard .image img {
+    width: 150px; }
 
 /*# sourceMappingURL=styles.css.map */
