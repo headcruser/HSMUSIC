@@ -13,7 +13,7 @@ Web application, similar to spotify using
 ## SITE
 <p align="center">
 <img src="./Doc/img/HSMUSIC.JPG" title="Welcome User." >
-<div align="center"> Site Home user.</div>
+<div align="center"> Artist Section.</div>
 </p>
 
 ## About me
