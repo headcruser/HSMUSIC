@@ -1,60 +1,72 @@
-<div class="titleSection card">
-  <div class="titulo row">
-    {{titulo}}
+<!-- TITLE -->
+<section>
+  <div class="titleSection card">
+    <div class="titulo row">
+      {{titulo}}
+    </div>
+    <div class="accion row">
+      <a [routerLink]="['/createArtist']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" href="" class="btn btn-primary btn-round ">
+        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+        Añadir Artista
+      </a>
+    </div>
   </div>
-  <div class="accion row">
-    <a [routerLink]="['/createArtist']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" href="" class="btn btn-primary btn-round ">
-      <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
-      Añadir Artista
-    </a>
-  </div>
-  <div class="pull-right">
-    <ul class="pagination artistNav">
-      <li class="page-item">
-        <a [routerLink]="['/artists',prevPage]" aria-label="Previous"
-        class="artistNav">
-          <span aria-hidden="true">
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-          </span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a [routerLink]="['/artists',nextPage]" aria-label="Next"
-         class="artistNav">
-          <span aria-hidden="true">
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-          </span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-<hr>
-<ul class="artistList" *ngIf="identity">
-    <li *ngFor="let artist of artists" class="col-lg-3 artistItem modal-content">
-      <!-- IMAGE ARTIST -->
-      <div class="artistImage">
-        <img src="{{url + 'getImageArtist/'+artist.image}}" alt="">
-      </div>
-      <!-- ACTIONS -->
-      <div class="artistName">
-        <a [routerLink]="['/artist',artist._id]">{{artist.name}}</a>
-
-        <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
-            <a [routerLink]="['/editArtist',artist._id]"
-                class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-
-            <a (click)="onDeleteConfirm(artist._id)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Borrar</a>
-        </div>
-
-        <div class="seguro" *ngIf="confirmado== artist._id">
-            <a (click)="onDeleteArtist(artist._id)" class="btn btn-danger">
-              <i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
-
-            <a (click)="onCancelArtist()" class="btn btn-default ">
-              <i class="fa fa-trash" aria-hidden="true"></i> Cancelar</a>
-        </div>
-      </div>
+</section>
+<!-- PAGINATION -->
+<section>
+  <ul class="artistNav">
+    <li class="page-item">
+      <a [routerLink]="['/artists',prevPage]" aria-label="Previous"
+      class="previous">
+        <span aria-hidden="true">
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </span>
+      </a>
     </li>
-</ul>
+    <li class="page-item">
+      <a [routerLink]="['/artists',nextPage]" aria-label="Next"
+        class="next">
+        <span aria-hidden="true">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- ARTIST LIST -->
+<section>
+  <ul class="artistList" *ngIf="identity">
+      <li *ngFor="let artist of artists" class="col-lg-3 artistItem">
+        <!-- IMAGE ARTIST -->
+        <figure class="artistImage" *ngIf="artist.image">
+          <img src="{{url + 'getImageArtist/'+artist.image}}" alt="Artista {{artist.name}}">
+        </figure>
+        <figure *ngIf="!artist.image">
+          <div class="artistNotImage">
+            <i class="fas fa-user"></i>
+          </div>
+        </figure>
+        <!-- ACTIONS -->
+        <div class="artistName">
+          <a [routerLink]="['/artist',artist._id]">{{artist.name}}</a>
+
+          <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+              <a [routerLink]="['/editArtist',artist._id]"
+                  class="btn btn-default"><i class="fas fa-pencil-alt"></i> Editar</a>
+
+              <a (click)="onDeleteConfirm(artist._id)" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i> Borrar</a>
+          </div>
+
+          <div class="seguro" *ngIf="confirmado== artist._id">
+              <a (click)="onDeleteArtist(artist._id)" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i> Eliminar</a>
+
+              <a (click)="onCancelArtist()" class="btn btn-default ">
+                <i class="fa fa-trash" aria-hidden="true"></i> Cancelar</a>
+          </div>
+        </div>
+      </li>
+  </ul>
+</section>
 

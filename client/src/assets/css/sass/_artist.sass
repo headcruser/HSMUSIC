@@ -1,56 +1,9 @@
-// SECTION STYLE ARTIST
-.artistList
-  margin: 0px
-  padding: 0px
-  margin-top: 30px
-  list-style: none
-
-// ITEMS ELEMENTS
-.artistItem
-  width: 23%
-  padding: 0px
-  margin: 0px
-  height: 317px
-  border: 1px solid #444
-  margin-left: 17px
-  margin-top: 20px
-  .artistImage
-    height: 245px
-    width: 100%
-    background: $BORDER_TOP
-    overflow: hidden
-    img
-      height: 100%
-      min-width: 100%
-  .artistName
-    padding: 10px
-    color: $FONTS_NAVBAR
-    background: #2f3640
-    text-align: center
-    a
-      color: white
-      font-size: 12px
-// PAGINATION ALBUMS
-.artistNav
-  background: #2f3640 !important
-  color: white !important
-  a
-    background: $ACTIVED_BUTTON !important
-    &:hover
-      background: $HOVER_BUTTON !important
-
-.artistImageEdit
-  img
-    width: 300px
-    height: 300px
-
 .titleSection
-  background: $BORDER_TOP
+  background: $TRASPARENT
   color: $FONTS_NAVBAR
   opacity: 0.9
-  filter: alpha(opacity=20)
   text-align: center
-  padding: 15px       //Alinea horizontal
+  padding: 10px       //Alinea horizontal
   margin: 0px         // Quita el margen entre elementos
   border-radius: 5px  //Redondea bloques
   .titulo
@@ -61,8 +14,88 @@
     font-size: 16px
     padding: 0px
 
-hr
-  border-top: 3px solid $BORDER_TOP
+// PAGINATION ALBUMS
+.artistNav
+  color: white
+  list-style: none
+  margin: 0px
+  padding: 0px
+  display: flex
+  justify-content: center
+  width: 100%
+  margin-bottom: 10px
+  .previous,.next
+    background: $ACTIVED_BUTTON
+    color: white
+    text-align: center
+    display: inline-block
+  .previous
+    a
+    width: 30px
+    height: 30px
+    text-align: center
+    padding: 5px
+    border: solid 1px $BORDER_TOP
+    &:hover
+      background: $HOVER_BUTTON !important
+  .next
+    a
+    width: 30px
+    height: 30px
+    text-align: center
+    padding: 5px
+    border: solid 1px $BORDER_TOP
+    &:hover
+      background: $HOVER_BUTTON !important
+// SECTION STYLE ARTIST
+.artistList
+  margin: 0px
+  padding: 0px
+  margin-top: 0px
+  list-style: none
+  display: flex
+  flex-wrap: wrap
+  .artistItem
+    width: 24%
+    padding: 0px
+    margin: 0px
+    border: 1px solid $BORDER_TOP
+    margin-left: 5px
+    margin-top: 5px
+    margin-right: 5px
+    margin-bottom: 5px
+    .artistImage
+      height: 245px
+      width: 100%
+      background-size: cover
+      justify-content: center
+      background: $BORDER_TOP
+      overflow: hidden
+    .artistNotImage
+      background: $BORDER_TOP
+      height: 245px
+      width: 263px
+      text-align: center
+      line-height: 263px
+      font-size: 120px
+      img
+        height: 100%
+        min-width: 100%
+    .artistName
+      padding: 10px
+      color: $FONTS_NAVBAR
+      background: rgba(#2f3640,0.85)
+      text-align: center
+      a
+        color: $FONTS_NAVBAR
+        font-size: 12px
+
+// EDITION SECTION
+.artistImageEdit
+  img
+    width: 300px
+    height: 300px
+
 
 /**SECTION ARTIST DETAIL STYLES*/
 #artistHeadCard
@@ -72,6 +105,16 @@ hr
     overflow: hidden
     float: left
     margin-right: 30px
+  .artistNotImage
+    background: $BORDER_TOP
+    width: 150px
+    height: 150px
+    overflow: hidden
+    float: left
+    margin-right: 30px
+    text-align: center
+    line-height: 150px
+    font-size: 120px
     img
       width: 150px
 

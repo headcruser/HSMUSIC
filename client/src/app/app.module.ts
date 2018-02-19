@@ -32,4 +32,11 @@ import { ArtistDetailComponent } from './components/artistDetail.component';
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule
+{
+  public luna:string
+  constructor()
+  {
+    this.luna='mi prueba'
+  }
+ }
