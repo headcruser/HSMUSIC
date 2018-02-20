@@ -11,6 +11,7 @@ import { ArtistListComponent } from './components/artistList.component';
 import { ArtistAddComponent } from './components/artistAdd.component';
 import { ArtistEditComponent } from './components/artistEdit.component';
 import { ArtistDetailComponent } from './components/artistDetail.component';
+import { AlbumAddComponent } from './components/albumAdd.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ArtistDetailComponent } from './components/artistDetail.component';
     ArtistListComponent,
     ArtistAddComponent,
     ArtistEditComponent,
-    ArtistDetailComponent
+    ArtistDetailComponent,
+    AlbumAddComponent
   ],
   imports: [
     BrowserModule,
@@ -32,11 +34,4 @@ import { ArtistDetailComponent } from './components/artistDetail.component';
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule
-{
-  public luna:string
-  constructor()
-  {
-    this.luna='mi prueba'
-  }
- }
+export class AppModule{}
