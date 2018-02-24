@@ -38,6 +38,16 @@ export class AlbumAddComponent implements OnInit
     console.log('Album Add Component Loader...')
   }
 
+  onSubmit()
+  {
+    this._route.params.forEach((params:Params)=>{
+      let artist_id = params['artist']
+      this.album.artist=artist_id
+      console.log(this.album);
+    })
+
+  }
+
 
 
 }
