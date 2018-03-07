@@ -12,12 +12,25 @@ export class AlbumService {
   constructor(private _http: Http) {
     this.url = GLOBAL.url
   }
+  getAlbum(token,id:string){
+    let headers = this.buildHeader(token)
+    let options = new RequestOptions({headers:headers})
+    return this._http.get(this.url+'album/'+id,options)
+      .map(res=>res.json())
+  }
   addAlbum(token: string, album: Album) {
     let params = JSON.stringify(album)
     let headers = this.buildHeader(token)
     return this._http.post( this.url + 'album', params, { headers: headers })
         .map(res => res.json());
   }
+  editAlbum(token: string, id:string,  album: Album) {
+    let params = JSON.stringify(album)
+    let headers = this.buildHeader(token)
+    return this._http.put(this.url + 'album/'+id, params, { headers: headers })
+      .map(res => res.json());
+  }
+
 
   buildHeader(token: string): Headers {
     return new Headers({
