@@ -18,6 +18,19 @@ export class AlbumService {
     return this._http.get(this.url+'album/'+id,options)
       .map(res=>res.json())
   }
+  getAlbums(token,artistID){
+    let headers = this.buildHeader(token)
+    let options = new RequestOptions({ headers: headers })
+
+    if(artistID == null)
+    {
+      return this._http.get(this.url + 'albums', options)
+        .map(res => res.json())
+    }else{
+      return this._http.get(this.url + 'albums/'+artistID, options)
+        .map(res => res.json())
+    }
+  }
   addAlbum(token: string, album: Album) {
     let params = JSON.stringify(album)
     let headers = this.buildHeader(token)

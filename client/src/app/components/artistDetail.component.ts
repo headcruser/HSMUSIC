@@ -3,13 +3,15 @@ import { Router, ActivatedRoute, Params } from "@angular/router"
 import { GLOBAL } from "../services/global";
 
 import { Artist } from "../models/Artist";
+import { Album } from "../models/Album";
 import { ArtistService } from "../services/artist.service";
+import { AlbumService } from "../services/album.service";
 import { UserService } from "../services/user.service";
 import { UploadService } from "../services/upload.service";
 @Component({
   selector: 'artistDetail',
   templateUrl: '../views/artistDetail.html',
-  providers: [ArtistService, UploadService]
+  providers: [ArtistService, UploadService,AlbumService]
 })
 
 export class ArtistDetailComponent implements OnInit
@@ -18,13 +20,15 @@ export class ArtistDetailComponent implements OnInit
   public token
   public url: string
   public artist: Artist
+  public albums: Album[]
   public alertMessage
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _artistService: ArtistService
+    private _artistService: ArtistService,
+    private _albumService : AlbumService
   ) {
     this.identity = this._userService.getIdentity()
     this.token = this._userService.getToken()
@@ -48,7 +52,22 @@ export class ArtistDetailComponent implements OnInit
 
           this.artist = response.artist
 
-          //Get Albums
+          this._albumService.getAlbums(this.token,response.artist._id ).subscribe(
+            response=>{
+              if(!response.albums){
+                return this.alertMessage = 'El artista no tiene albums'
+              }
+              this.albums = response.albums;
+            },
+            error => {
+              var ErrorMessage = <any>error
+              if (ErrorMessage != null) {
+                var body = JSON.parse(error._body)
+                console.log(error)
+              }
+            }
+          )
+
         },
         error=>
         {

@@ -79,12 +79,15 @@ export class ArtistEditComponent implements OnInit
           if (!response.artist)
             return this.alertMessage = 'Error en el servidor'
 
+          if(!this.filesToUpload)
+            return this._router.navigate(['/artist', response.artist._id])
+
           this._uploadSevice.makeFileRequest(
             this.url+'uploadImageArtist/'+id, [], this.filesToUpload, this.token, 'image')
             .then(
               (result)=>
               {
-                this._router.navigate(['/artists',1])
+                this._router.navigate(['/artist', response.artist._id])
               },
               (error)=>
               {

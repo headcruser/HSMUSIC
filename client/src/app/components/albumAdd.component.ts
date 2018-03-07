@@ -51,7 +51,7 @@ export class AlbumAddComponent implements OnInit
             return this.alertMessage = 'Error en el servidor'
 
           this.artist = response.artist
-          //this._router.navigate(['/editArtist', response.artist._id])
+          this._router.navigate(['/editAlbum', response.album._id])
           return this.alertMessage = 'El album se ha creado correctamente'
         }, error => {
           var ErrorMessage = <any>error

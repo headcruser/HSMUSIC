@@ -71,14 +71,14 @@ export class AlbumEditComponent implements OnInit {
 
           this.alertMessage = 'El album se ha creado correctamente'
           if(!this.filesToUpload){
-            this._router.navigate(['/artists', response.album.artist])
+            this._router.navigate(['/artist', response.album.artist])
           }
           else{
             this._uploadSevice.makeFileRequest(
               this.url + 'uploadImageAlbum/' + id, [], this.filesToUpload, this.token, 'image')
               .then(
                 (result) => {
-                  this._router.navigate(['/artists', response.album.artist])
+                  this._router.navigate(['/artist', response.album.artist])
                 },
                 (error) => {
                   console.log(error)
