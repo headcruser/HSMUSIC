@@ -257,4 +257,12 @@ html {
         color: #F0F0F0;
         font-size: 12px; }
 
+.confirmDeleteAlbum {
+  width: 85%;
+  margin-top: -46px;
+  text-align: center;
+  background: #2f3640;
+  position: absolute;
+  overflow: hidden; }
+
 /*# sourceMappingURL=styles.css.map */

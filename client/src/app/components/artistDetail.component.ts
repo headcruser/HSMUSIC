@@ -81,5 +81,29 @@ export class ArtistDetailComponent implements OnInit
       )
     })
   }
+  public confirmado;
+  onDeleteConfirm(id){
+    this.confirmado = id;
+  }
+  onCancelAlbum(){
+    this.confirmado = null;
+  }
+  onDeleteAlbum(id){
+    this._albumService.deleteAlbum(this.token,id).subscribe(
+      response => {
+        if (!response.album) {
+          return alert('Error en el servidor')
+        }
+        this.getArtist()
+      },
+      error => {
+        var ErrorMessage = <any>error
+        if (ErrorMessage != null) {
+          var body = JSON.parse(error._body)
+          console.log(error)
+        }
+      }
+    )
+  }
 
 }

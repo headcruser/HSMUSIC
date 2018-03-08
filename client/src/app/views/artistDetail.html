@@ -29,26 +29,27 @@
         </figure>
         <!-- ALBUM NAME -->
         <div class="albumName">
-          <p> <a href="#">{{album.title}}</a></p>
+          <p> <a [routerLink]="['/album',album._id]">{{album.title}} </a></p>
           <p>
-            <a [routerLink]="['/artist',album.artist.id]">
+            <a [routerLink]="['/artist',album.artist._id]">
               {{album.artist.name}}
             </a>
           </p>
           <!-- ACTIONS BUTTONS -->
-          <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+          <div *ngIf="identity.role == 'ROLE_ADMIN'">
             <a [routerLink]="['/editAlbum',album._id]" class="btn btn-default">
               <i class="fas fa-pencil-alt"></i> Editar</a>
 
             <a (click)="onDeleteConfirm(album._id)" class="btn btn-danger">
               <i class="far fa-trash-alt"></i> Borrar</a>
-          </div>
-          <div class="seguro" *ngIf="confirmado == album._id">
-            <a (click)="onDeleteAlbum(album._id)" class="btn btn-danger">
-              <i class="far fa-trash-alt"></i> Eliminar</a>
 
-            <a (click)="onCancelAlbum()" class="btn btn-default ">
-              <i class="fa fa-trash" aria-hidden="true"></i> Cancelar</a>
+            <div class="confirmDeleteAlbum" *ngIf="confirmado == album._id">
+              <a (click)="onDeleteAlbum(album._id)" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i> Eliminar</a>
+
+              <a (click)="onCancelAlbum()" class="btn btn-default ">
+                <i class="fa fa-trash" aria-hidden="true"></i> Cancelar</a>
+            </div>
           </div>
         </div>
       </li>
