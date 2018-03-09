@@ -14,6 +14,7 @@ import { ArtistDetailComponent } from './components/artistDetail.component';
 import { AlbumAddComponent } from './components/albumAdd.component';
 import { AlbumEditComponent } from './components/albumEdit.component';
 import { AlbumDetailComponent } from './components/albumDetail.component';
+import { SongAddComponent } from './components/songAdd.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AlbumDetailComponent } from './components/albumDetail.component';
     ArtistDetailComponent,
     AlbumAddComponent,
     AlbumEditComponent,
-    AlbumDetailComponent
+    AlbumDetailComponent,
+    SongAddComponent
   ],
   imports: [
     BrowserModule,
