@@ -35,9 +35,11 @@ export class SongAddComponent implements OnInit {
   }
 
   onSubmit() {
-    // this._route.params.forEach((params: Params) => {
-    //   let artist_id = params['artist']
-    //   this.album.artist = artist_id
+
+    this._route.params.forEach((params: Params) => {
+      let album_id = params['album']
+      this.song.album = album_id
+      console.log(this.song)
     //   this._albumService.addAlbum(this.token, this.album).subscribe(
     //     response => {
     //       if (!response.album)
@@ -55,7 +57,7 @@ export class SongAddComponent implements OnInit {
     //       }
     //     }
     //   )
-    // })
+    })
   }
 
 }
