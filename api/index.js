@@ -1,17 +1,23 @@
-'use strict'
-var mongoose=require('mongoose');
-var app = require('./app');
-var port = process.env.PORT || 3977;
+"use strict";
+const mongoose = require("mongoose"),
+  app = require("./app"),
+  port = process.env.PORT || 3977,
+  uri = `mongodb://${process.env.HOST_MONGO}:${process.env.PORT_MONGO}/${process.env.DB_MONGO}`,
+  options = {
+    useNewUrlParser: true,
+    socketTimeoutMS: 45000,
+    useUnifiedTopology: true,
+  };
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/hsmusic',(err,res)=>{
-    if(err){
-        throw err;
-    }else{
-         console.log("Conexion exitosa");
-         app.listen(port, function(){
-             console.log("Server API HSMUSIC in http://localhost:" + port);
-         })
-    }
-});
+(async () => {
+  try {
+    await mongoose.connect(uri, options);
+    app.listen(port, function () {
+      console.log("Server API HSMUSIC in http://localhost:" + port);
+    });
+  } catch (err) {
+    console.log(`Error API HMUSIC ${err}`);
+  }
+})();
