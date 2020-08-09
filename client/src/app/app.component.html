@@ -1,164 +1,198 @@
-<!-- NAVIGATION SITE -->
-<div *ngIf="identity" class="navigation col-lg-1 col-md-1 col-xs-12">
-  <nav>
-    <!-- SECTION NAVIGATION -->
-    <div id="navigation">
-        <h1 class="headTitle">
-          <a [routerLink]="['/']">
-            <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
-            {{title}}
-          </a>
-        </h1>
-        <a href="#">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-        </a>
+<section *ngIf="identity">
+  <h1>{{ title }}</h1>
+</section>
 
-        <a [routerLink]="['/artists',1]" [routerLinkActive]="['actived']">
-          <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Artistas
-        </a>
+<section *ngIf="identity">
+  <p>Estas logeado en la aplicación</p>
+</section>
 
-        <a href="#">
-          <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Albums
-        </a>
-    </div>
-    <!-- SECTION INFO USER -->
-    <div id="userLogged">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="imageForEdit" *ngIf="identity.image">
-            <img id="imageLogged" src="{{url + 'getImageUser/' + identity.image}}" alt="">
-          </div>
-          <div class="imageForEdit" *ngIf="identity.image=='null'">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <span id="indentity_name">
-            {{identity.name}}
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <a [routerLink]="['/misDatos']" [routerLinkActive]="['actived']">
-            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Perfil
-          </a>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <a (click)="logout()" class="btnLogout">
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Salir
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div><!-- END NAVBAR -->
-<div class="clearfix visible-xs"></div>
-<!--SECTION COMPONENT  -->
-<div [class.hidden]="!identity" class="central col-lg-11 col-md-11 col-lg-offset-1 col-md-offset-1 page-content-wrapper col-xs-12">
-  <!-- Adding User Edit Component  -->
-  <router-outlet></router-outlet>
-</div>
 <!-- REGISTER AND LOGIN -->
-<div class="container" *ngIf="!identity" >
-  <!-- SECTION LOGIN -->
-  <div class="col-md-6 login">
-    <!-- ALERT SECTION-->
-    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-      <div class="alert-icon">
-        <i class="now-ui-icons travel_info"></i>
-      </div>
-      <strong>Error</strong> {{errorMessage}}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">
-          <i class="now-ui-icons ui-1_simple-remove"></i>
-        </span>
-      </button>
-    </div>
-    <!-- login -->
-    <h2 class="title-login">Inicio Sesión</h2>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form login-form">
-      <div class="input-group form-group-no-border">
-        <span class="input-group-addon">
-          <i class="fas fa-envelope-open"></i>
-        </span>
-        <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email"
-                class="form-control input-lg" placeholder="Email" required>
-      </div>
-      <span *ngIf="!email.valid && email.touched">
-        <p class="text-danger">El email no es valido</p>
-      </span>
-
-      <div class="input-group form-group-no-border">
-        <span class="input-group-addon">
-          <i class="fas fa-key" aria-hidden="true"></i>
-        </span>
-        <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password"
-                class="form-control input-lg" placeholder="Password" required>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-block btn-lg">Entrar</button>
-    </form>
+<div class="container">
+  <div class="py-2 text-center">
+    <h2>{{ title }}</h2>
+    <p class="lead">Aplicacion web sencilla para reproducir tu contenido multimedia</p>
   </div>
-
-  <!-- SECTION REGISTER -->
-  <div class="col-md-6">
-    <!-- ALERT INFO -->
-    <div *ngIf="alertRegister" class="alert alert-danger" role="alert">
-      <div class="alert-icon">
-        <i class="now-ui-icons travel_info"></i>
+  <div class="row py-2">
+    <!-- SECTION LOGIN -->
+    <div class="col-md-6 login">
+      <!-- ALERT SECTION-->
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        <div class="alert-icon">
+          <i class="now-ui-icons travel_info"></i>
+        </div>
+        <strong>Error</strong> {{errorMessage}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+          </span>
+        </button>
       </div>
-      <strong>Error</strong> {{alertRegister}}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">
-          <i class="now-ui-icons ui-1_simple-remove"></i>
-        </span>
-      </button>
+
+      <!-- login -->
+      <h2 class="title-login mb-3">Inicio Sesión</h2>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form login-form">
+        <div class="form-group">
+            <label class="sr-only" for="input-email">Usuario</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user"></i></div>
+              </div>
+              <input id="input-email"
+                type="email"
+                #email="ngModel"
+                name="email" [(ngModel)]="user.email"
+                class="form-control input-lg"
+                placeholder="Email"
+                autocomplete="off"
+                required>
+            </div>
+
+            <small class="form-text text-muted"
+              *ngIf="!email.valid && email.touched">
+              <p class="text-danger">El email no es valido</p>
+            </small>
+        </div>
+
+        <div class="form-group">
+          <label class="sr-only" for="input-password">Contraseña</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-unlock-alt"></i>
+              </div>
+            </div>
+            <input id="input-password"
+              type="password"
+              #password="ngModel"
+              name="password" [(ngModel)]="user.password"
+              class="form-control input-lg"
+              placeholder="Password"
+              required>
+          </div>
+        </div>
+
+        <button type="submit"
+          class="btn btn-primary btn-block btn-lg">Entrar
+        </button>
+
+      </form>
     </div>
-    <!-- FORM REGISTER -->
-      <h2 class="titleRegister">Registrate</h2>
+
+    <!-- SECTION REGISTER -->
+    <div class="col-md-6">
+      <!-- ALERT INFO -->
+      <div *ngIf="alertRegister" class="alert alert-danger" role="alert">
+        <div class="alert-icon">
+          <i class="now-ui-icons travel_info"></i>
+        </div>
+        <strong>Error</strong> {{alertRegister}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+          </span>
+        </button>
+      </div>
+      <!-- FORM REGISTER -->
+      <h2 class="titleRegister mb-3">Registrate</h2>
       <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="register">
-        <div class="input-group form-group-no-border form-group">
-          <span class="input-group-addon"> <i class="fas fa-user"></i></span>
-          <input type="text" #name="ngModel" [(ngModel)]="userRegister.name" name="nombre" class="form-control  input-lg" placeholder="Nombre" required>
-        </div>
-            <span *ngIf="!name.valid && name.touched">
+
+        <!-- NOMBRE -->
+        <div class="form-group">
+            <label class="sr-only" for="input-name"></label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-user"></i>
+                  </div>
+                </div>
+                <input id="input-name"
+                  type="text"
+                  #name="ngModel" [(ngModel)]="userRegister.name"
+                  name="nombre"
+                  class="form-control  input-lg"
+                  placeholder="Nombre"
+                  autocomplete="off"
+                  required>
+            </div>
+            <small class="form-text text-muted" *ngIf="!name.valid && name.touched">
               <p class="text-danger">El nombre es obligatorio</p>
-            </span>
-
-        <div class="input-group form-group-no-border form-group">
-          <span class="input-group-addon"> <i class="fas fa-user"></i></span>
-          <input type="text" #surname="ngModel" [(ngModel)]="userRegister.surname" name="surname" class="form-control input-lg"  placeholder="Apellidos" required>
+            </small>
         </div>
-        <span *ngIf="!surname.valid && surname.touched">
-          <p class="text-danger">Los apellidos son obligatorios</p>
-        </span>
 
-        <div class="input-group form-group-no-border form-group">
-          <span class="input-group-addon"> <i class="fas fa-envelope-open"></i></span>
-          <input type="email" #email="ngModel" [(ngModel)]="userRegister.email" name="email"
-          class="form-control input-lg" required placeholder="Email Adress">
+        <!-- APELLIDOS -->
+        <div class="form-group">
+          <label class="sr-only" for="input-surname"></label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
+            <input id="input-surname"
+              type="text"
+              #surname="ngModel" [(ngModel)]="userRegister.surname"
+              name="surname"
+              class="form-control input-lg"
+              placeholder="Apellidos"
+              autocomplete="off"
+              required>
+          </div>
+          <small class="form-text text-muted" *ngIf="!surname.valid && surname.touched">
+            <p class="text-danger">Los apellidos son obligatorios</p>
+          </small>
         </div>
-        <span *ngIf="!email.valid && email.touched">
-          <p class="text-danger">El email es obligatorio</p>
-        </span>
 
-        <div class="input-group form-group-no-border form-group">
-          <span class="input-group-addon"> <i class="fas fa-key"></i></span>
-          <input type="password" #password="ngModel" [(ngModel)]="userRegister.password" name="password" class="form-control input-lg" required placeholder="Password">
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label class="sr-only" for="input-emailr"></label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                  <i class="fa fa-at"></i>
+              </div>
+            </div>
+            <input id="input-emailr"
+              type="email"
+              #email="ngModel"
+              [(ngModel)]="userRegister.email"
+              name="email"
+              class="form-control input-lg"
+              placeholder="Email Adress"
+              autocomplete="off"
+              required >
+          </div>
+          <small class="form-text text-muted" *ngIf="!email.valid && email.touched">
+            <p class="text-danger">El email es obligatorio</p>
+          </small>
         </div>
-        <span *ngIf="!password.valid && password.touched">
-          <p class="text-danger">El password es obligatorio</p>
-        </span>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+          <label class="sr-only" for="input-passwordr"></label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-unlock-alt"></i>
+              </div>
+            </div>
+            <input id="input-passwordr"
+              type="password"
+              #password="ngModel" [(ngModel)]="userRegister.password"
+              name="password"
+              class="form-control input-lg"
+              required
+              placeholder="Password">
+
+          </div>
+          <small class="form-text text-muted" *ngIf="!password.valid && password.touched">
+            <p class="text-danger">El password es obligatorio</p>
+          </small>
+        </div>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block">Registrar</button>
       </form>
 
+    </div>
   </div>
-
 </div>
