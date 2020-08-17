@@ -1,14 +1,41 @@
-<section *ngIf="identity">
-  <h1>{{ title }}</h1>
-</section>
+<!-- Login User Sesion -->
+<div *ngIf="identity" class="navigation col-lg-1">
+  <h1>
+    {{title}}
+  </h1>
 
-<section *ngIf="identity">
-  <p>Estas logeado en la aplicación</p>
-</section>
+  <nav id="navigation">
+    <a href="#">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+    </a>
+    <a href="#">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Artistas
+    </a>
+    <a href="#">
+      <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Albums
+    </a>
+  </nav>
+
+  <nav id="userLogged">
+    <span>
+      {{identity.name}}
+    </span>
+    <span class="btn btn-warning" (click)="logout()">
+      Cerrar Sesión
+    </span>
+    <a [routerLink]="['/misDatos']">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> MisDatos
+    </a>
+  </nav>
+</div>
+
+<div *ngIf="identity" class="central col-lg-11">
+  <p>Logeado en la aplicación</p>
+</div>
 
 
 <!-- REGISTER AND LOGIN -->
-<div class="container">
+<div class="container" *ngIf="!identity">
   <div class="py-2 text-center">
     <h2>{{ title }}</h2>
     <p class="lead">Aplicacion web sencilla para reproducir tu contenido multimedia</p>
@@ -17,21 +44,18 @@
     <!-- SECTION LOGIN -->
     <div class="col-md-6 login">
       <!-- ALERT SECTION-->
-      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-        <div class="alert-icon">
-          <i class="now-ui-icons travel_info"></i>
-        </div>
-        <strong>Error</strong> {{errorMessage}}
+      <div *ngIf="errorMessage"
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert">
+        <i class="fa fa-info-circle"></i> {{errorMessage}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
       <!-- login -->
       <h2 class="title-login mb-3">Inicio Sesión</h2>
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form login-form">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" class="form login-form">
         <div class="form-group">
             <label class="sr-only" for="input-email">Usuario</label>
             <div class="input-group mb-2">
@@ -81,18 +105,17 @@
 
     <!-- SECTION REGISTER -->
     <div class="col-md-6">
-      <!-- ALERT INFO -->
-      <div *ngIf="alertRegister" class="alert alert-danger" role="alert">
-        <div class="alert-icon">
-          <i class="now-ui-icons travel_info"></i>
-        </div>
-        <strong>Error</strong> {{alertRegister}}
+
+      <div *ngIf="alertRegister"
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert">
+        <i class="fa fa-info-circle"></i> {{alertRegister}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
+
       <!-- FORM REGISTER -->
       <h2 class="titleRegister mb-3">Registrate</h2>
       <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="register">
@@ -145,14 +168,14 @@
 
         <!-- EMAIL -->
         <div class="form-group">
-          <label class="sr-only" for="input-emailr"></label>
+          <label class="sr-only" for="input-register-email"></label>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text">
                   <i class="fa fa-at"></i>
               </div>
             </div>
-            <input id="input-emailr"
+            <input id="input-register-email"
               type="email"
               #email="ngModel"
               [(ngModel)]="userRegister.email"

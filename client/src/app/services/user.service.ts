@@ -1,17 +1,20 @@
 import {Injectable} from '@angular/core'
-import {Http,Response,Headers} from '@angular/http'
-import 'rxjs/add/operator/map'
-import {Observable} from 'rxjs/Observable'
-import {GLOBAL} from './global'
+import {HttpClient,HttpHeaders} from '@angular/common/http'
 
-@Injectable()
+import {GLOBAL} from './global'
+import { Observable } from 'rxjs';
+import { User } from '../models/User';
+
+@Injectable({
+  providedIn:'root'
+})
 export class UserService
 {
-  public url:string
-  public identity
-  public token
+  public url:string;
+  public identity:string;
+  public token:string;
 
-  constructor(private _http:Http){
+  constructor(private _http:HttpClient){
     this.url= GLOBAL.url
   }
   /**
@@ -20,29 +23,28 @@ export class UserService
    * @param gethash Generate Token for User
    * @return Json data Login Sesion user
    */
-  signup(userToLogin,gethash=null)
+  signup(userToLogin,gethash=null):Observable<any>
   {
-    if(gethash!=null){
+    if(gethash!=null) {
       userToLogin.gethash=gethash;
     }
-    let json = JSON.stringify(userToLogin);
-    let params= json;
-    let headers = new Headers({'Content-Type':'application/json'});
 
-    return this._http.post(this.url+'login',params,{headers:headers})
-            .map(res=>res.json());
+    let json:string = JSON.stringify(userToLogin),
+      params:string = json,
+      headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json'});
+
+    return this._http.post(this.url+'login',params,{headers:headers});
   }
   /**
    * Register User in Database
    *
    */
-  register(userToRegister)
+  register(userToRegister:User):Observable<any>
   {
-    let params = JSON.stringify(userToRegister);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let params:string = JSON.stringify(userToRegister),
+      headers:HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this._http.post(this.url + 'register', params, { headers: headers })
-      .map(res => res.json());
+    return this._http.post(this.url + 'register', params, { headers: headers });
   }
   /**
    * Get inentified Session User
@@ -57,21 +59,20 @@ export class UserService
    * @return Json token formatted
    */
   getToken():string{
-    let token = localStorage.getItem('token')
+    let token:string = localStorage.getItem('token')
     return token
   }
 
-  updateUser(userToUpdate)
+  updateUser(userToUpdate:User):Observable<any>
   {
-    let params = JSON.stringify(userToUpdate);
-    let headers = new Headers({
+    let params:string = JSON.stringify(userToUpdate),
+      headers:HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('token')
     });
 
     return this._http.put(
-      this.url + 'updateUser/'+userToUpdate._id,
-      params, { headers: headers })
-        .map(res => res.json());
+      this.url + 'updateUser/'+userToUpdate._id,params, { headers: headers }
+    );
   }
 }
