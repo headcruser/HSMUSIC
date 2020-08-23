@@ -50,17 +50,45 @@ export class UserService
    * Get inentified Session User
    * @return Json identity formatter
    */
-  getIdentity()
-  {
-    return JSON.parse(localStorage.getItem('identity'))
+  getIdentity(): User {
+    return JSON.parse(localStorage.getItem('identity')) as User
   }
+
+  /**
+   * Actualiza la informacion del usuario en localstorage
+   *
+   * @param user Usuario a actualizar
+   * @return void
+   */
+  setIdentity(user:User):void {
+    localStorage.setItem('identity', JSON.stringify(user))
+  }
+
   /**
    * Get inentified Session User
    * @return Json token formatted
    */
-  getToken():string{
+  getToken():string {
     let token:string = localStorage.getItem('token')
     return token
+  }
+
+  /**
+   * Actualiza el token del usuario
+   *
+   * @param token Token a actualizar
+   */
+  setToken(token: string): void {
+    localStorage.setItem('token', token)
+  }
+
+  /**
+   * Limpia la sesion activa del usuario
+   */
+  clearSession():void {
+    localStorage.removeItem('identity');
+    localStorage.removeItem('token');
+    localStorage.clear();
   }
 
   updateUser(userToUpdate:User):Observable<any>

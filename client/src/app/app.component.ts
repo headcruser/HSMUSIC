@@ -14,11 +14,11 @@ export class AppComponent {
   public title = 'hs-music';
   public user: User;
   public userRegister: User
-  public identity: String;
-  public token: String;
-  public errorMessage: String
-  public alertRegister: String
-  public url: String
+  public identity: User;
+  public token: string;
+  public errorMessage: string
+  public alertRegister: string
+  public url: string
 
   constructor(private _userService: UserService) {
     this.user = new User('', '', '', '', '', 'ROLE_USER', '');
@@ -27,34 +27,33 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.identity = this._userService.getIdentity();
+    this.identity = this._userService.getIdentity() as User;
     this.token = this._userService.getToken();
   }
 
   public onSubmit(form:any) {
 
     this._userService.signup(this.user).subscribe((response) => {
-      let identity = response.user;
+      let identity:User = response.user as User;
       this.identity = identity;
 
       if (!this.identity) {
         return alert('El usuario no esta correctamente identificado')
       }
 
-      //CREATE ELEMENT LOCALSTORTAGE
-      localStorage.setItem('identity', JSON.stringify(identity));
+      this._userService.setIdentity(identity)
 
       this._userService.signup(this.user, 'true').subscribe(
         response => {
-          let token = response.token
-          this.token = token
+          let token:string = response.token as string;
+          this.token = token;
 
           if (this.token.length <= 0) {
             return alert('El Token no se ha generado')
           }
 
-          //CREATE TOKEN IN LOCALSTORAGE
-          localStorage.setItem('token', token)
+          this._userService.setToken(token);
+
           this.user = new User('', '', '', '', '', 'ROLE_USER', '')
         },
         (error) => {
@@ -81,9 +80,7 @@ export class AppComponent {
   }
 
   public logout() {
-    localStorage.removeItem('identity')
-    localStorage.removeItem('token')
-    localStorage.clear()
+    this._userService.clearSession();
     this.identity = null
     this.token = null
   }

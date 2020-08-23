@@ -3,3 +3,88 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 @import "variables";
+
+// Temporal
+$color-navbar:#181712;
+$fonts-navbar:#F0F0F0;
+$border-top:#757571;
+$background:#B0ABA0;
+$page-content :#1c1c1f;
+
+$color-button-active:#84BD00;
+$color-button-hover:#97CE68;
+
+body,html {
+  background: #eee;
+  margin: 0px;
+  height: 100%;
+  background: #eee;
+  overflow-x: hidden;
+}
+
+body{
+  background: $page-content;
+}
+
+html{
+  background: $page-content;
+}
+
+.head-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  display: block;
+}
+
+.navigation {
+  text-align: center;
+  color: white;
+  background: $page-content;
+
+  a {
+    color:#ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    text-decoration: none;
+    &:hover{
+      color: $color-button-hover;
+    }
+  }
+  .fa{
+    font-size: 25px;
+    display: block;
+    width: 100%;
+  }
+
+  .actived{
+    border-bottom: 4px solid $color-button-active;
+    padding-bottom: 4px;
+  }
+}
+
+#userLogged {
+  border-top: 3px solid $border-top;
+  margin-top: 40px;
+  .image-user {
+    margin: 0px auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-align: center;
+    img {
+      border-radius: 50%;
+      width: 60px;
+      height: 55px;
+    }
+    i {
+      font-size: 24px;
+    }
+  }
+}
+
+.btnLogout{
+  cursor: pointer;
+}
